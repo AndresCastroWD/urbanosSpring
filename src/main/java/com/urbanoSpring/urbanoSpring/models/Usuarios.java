@@ -12,6 +12,7 @@ public class Usuarios {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    private String identificacion;
     private String nombre;
     private String username;
     private String email;
@@ -24,6 +25,7 @@ public Usuarios() {
 
     
 }
+
 
 public Integer getId() {
     return id;
@@ -87,6 +89,16 @@ public String getPassword() {
 
 public void setPassword(String password) {
     this.password = password;
+}
+
+
+public String getIdentificacion() {
+    return identificacion;
+}
+
+
+public void setIdentificacion(String identificacion) {
+    this.identificacion = identificacion;
 }
 
 
