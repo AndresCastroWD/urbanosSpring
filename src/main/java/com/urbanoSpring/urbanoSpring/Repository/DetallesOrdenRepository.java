@@ -5,8 +5,10 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.urbanoSpring.urbanoSpring.models.Productos;
+import com.urbanoSpring.urbanoSpring.models.DetallesOrdenCompra;
+
+
 @Repository
-public interface ProductosRepository extends JpaRepository<Productos,Integer> {
-    List<Productos> findByNombreLike(String nombre);
-}
+public interface DetallesOrdenRepository extends JpaRepository<DetallesOrdenCompra, Integer> {
+    
+ }
