@@ -10,44 +10,37 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.urbanoSpring.urbanoSpring.Repository.ProductosRepository;
 import com.urbanoSpring.urbanoSpring.models.Productos;
 import com.urbanoSpring.urbanoSpring.service.ProductosService;
 
 @RestController
-@RequestMapping("/urbano")
+@RequestMapping("/admin")
 @CrossOrigin("*")
 public class ProductosController {
 
    @Autowired
    private ProductosService productoservice;
-   @Autowired
-   private ProductosRepository productosRepository;
+
 
    @PostMapping("/guardarProductos")
    public ResponseEntity<Productos> save(@RequestBody Productos product) {
-      return new ResponseEntity<>(productoservice.save(product), HttpStatus.CREATED);
+      return new ResponseEntity<>(productoservice.GuardarProducto(product), HttpStatus.CREATED);
    }
 
    @GetMapping("/todosProductos")
-   public ResponseEntity<List<Productos>> findAll() {
-      return new ResponseEntity<>(productoservice.findAll(), HttpStatus.OK);
-   }
-
-   @GetMapping("/buscarProducto/{id}")
-   public ResponseEntity<Productos> findById(@PathVariable Integer id) {
-      return new ResponseEntity<>(productoservice.get(id), HttpStatus.OK);
-
+   public ResponseEntity<List<Productos>> BuscarTodos() {
+      return new ResponseEntity<>(productoservice.BuscarTodos(), HttpStatus.OK);
    }
 
    @GetMapping("/buscarProducto/nombrelike")
 	public ResponseEntity<List<Productos>> getLaptopsByNameLike(@RequestParam String nombre) {
-		return new ResponseEntity<List<Productos>>(productosRepository.findByNombreLike("%"+nombre+"%"), HttpStatus.OK);
+		return new ResponseEntity<List<Productos>>(productoservice.BuscarLikeNombre("%"+nombre+"%"), HttpStatus.OK);
 	}
 
    @DeleteMapping("/elimnarProdcuto/{id}")
@@ -56,5 +49,12 @@ public class ProductosController {
       return new ResponseEntity<>(HttpStatus.OK);
 
    }
+
+   @PutMapping("actualizarProducto")
+   public void ActualizarProducto(@RequestBody Productos product){
+      productoservice.ActualizarProducto(product);
+
+   }
+
 
 }

@@ -7,8 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -26,8 +24,9 @@ public class DetallesOrdenCompra implements Serializable {
     @Column(name = "ordenid")
     private Integer ordenid;
 
-    @ManyToOne
-    private Productos producto;
+    
+    @Column(name = "productoid")
+    private Integer productoid;
 
     public Integer getDetalleid() {
         return detalleid;
@@ -49,6 +48,14 @@ public class DetallesOrdenCompra implements Serializable {
         return precio;
     }
 
+    public Integer getProductoid() {
+        return productoid;
+    }
+
+    public void setProductoid(Integer productoid) {
+        this.productoid = productoid;
+    }
+
     public void setPrecio(double precio) {
         this.precio = precio;
     }
@@ -68,16 +75,5 @@ public class DetallesOrdenCompra implements Serializable {
     public void setOrdenid(Integer ordenid) {
         this.ordenid = ordenid;
     }
-
-    public Productos getProducto() {
-        return producto;
-    }
-
-    public void setProducto(Productos producto) {
-        this.producto = producto;
-    }
-
-
-
 
 }

@@ -9,7 +9,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -21,13 +20,9 @@ public class OrdenCompra implements Serializable {
     @Column(name = "orden_id")
     private Integer ordenid;
   
-
     private Date fecha;
-  
-
     private double total;
-    @ManyToOne()
-    private Usuarios usuario;
+    private Integer usuario;
 
     @OneToMany(mappedBy ="ordenid")
     private List<DetallesOrdenCompra> detallesOrdenCompra;
@@ -35,7 +30,6 @@ public class OrdenCompra implements Serializable {
     public OrdenCompra() {
 
     }
-    
 
     public List<DetallesOrdenCompra> getDetallesOrdenCompra() {
         return detallesOrdenCompra;
@@ -44,17 +38,6 @@ public class OrdenCompra implements Serializable {
     public void setDetallesOrdenCompra(List<DetallesOrdenCompra> detallesOrdenCompra) {
         this.detallesOrdenCompra = detallesOrdenCompra;
     }
-
-  
-    public Usuarios getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuarios usuario) {
-        this.usuario = usuario;
-    }
-
- 
 
 
     public Date getFecha() {
@@ -81,6 +64,16 @@ public class OrdenCompra implements Serializable {
 
     public void setOrdenid(Integer ordenid) {
         this.ordenid = ordenid;
+    }
+
+
+    public Integer getUsuario() {
+        return usuario;
+    }
+
+
+    public void setUsuario(Integer usuario) {
+        this.usuario = usuario;
     }
 
 }

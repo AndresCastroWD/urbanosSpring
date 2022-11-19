@@ -20,26 +20,13 @@ public class Usuarios {
     private String email;
     private String direccion;
     private String telefono;
-    @OneToMany(mappedBy = "usuario")
-    private List<Productos> productos;
+
 
     @OneToMany(mappedBy = "usuario")
     private List<OrdenCompra>  ordenCompra;
 
     public Usuarios() {
 
-    }
-
-
-
-    public List<Productos> getProductos() {
-        return productos;
-    }
-
-
-
-    public void setProductos(List<Productos> productos) {
-        this.productos = productos;
     }
 
 

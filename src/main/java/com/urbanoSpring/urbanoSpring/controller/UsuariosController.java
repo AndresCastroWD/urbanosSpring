@@ -19,29 +19,29 @@ import com.urbanoSpring.urbanoSpring.service.UsuariosService;
 
 
 @RestController
-@RequestMapping("/urbano/usuarios")
+@RequestMapping("/admin/usuarios")
 public class UsuariosController {
     @Autowired
     private UsuariosService usuariosService;
 
     @PostMapping("/guardar")
-    public ResponseEntity<Usuarios> save(@RequestBody Usuarios usuarios){
-        return new ResponseEntity<>(usuariosService.save(usuarios), HttpStatus.CREATED);
+    public ResponseEntity<Usuarios> GuardarUsuario(@RequestBody Usuarios usuarios){
+        return new ResponseEntity<>(usuariosService.GuardarUsuario(usuarios), HttpStatus.CREATED);
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<Usuarios>> findAll(){
-        return new ResponseEntity<>(usuariosService.findAll(),HttpStatus.OK);
+    public ResponseEntity<List<Usuarios>> BuscarTodos(){
+        return new ResponseEntity<>(usuariosService.BuscarTodos(),HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Usuarios> findById(@PathVariable Integer id){
-        return new ResponseEntity<>(usuariosService.get(id),HttpStatus.OK);
+    public ResponseEntity<Usuarios> BuscarById(@PathVariable Integer id){
+        return new ResponseEntity<>(usuariosService.BuscarById(id),HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity delete(@PathVariable Integer id){
-        usuariosService.delete(id);
+    public  ResponseEntity EliminarUsuario(@PathVariable Integer id){
+        usuariosService.EliminarUsuario(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

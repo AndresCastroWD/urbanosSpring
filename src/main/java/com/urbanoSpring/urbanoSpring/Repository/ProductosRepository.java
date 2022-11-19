@@ -1,4 +1,4 @@
-package com.urbanoSpring.urbanoSpring.Repository;
+package com.urbanoSpring.urbanoSpring.repository;
 
 import java.util.List;
 
