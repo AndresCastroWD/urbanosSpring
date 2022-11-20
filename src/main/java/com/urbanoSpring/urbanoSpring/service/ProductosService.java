@@ -38,8 +38,17 @@ public class ProductosService {
         return productosRepository.findByNombreLike(nombre);
     }
 
-    public void ActualizarProducto (Productos producto) {
+    public void ActualizarProducto(Productos producto) {
         productosRepository.save(producto);
+    }
+
+    public void EliminarProducto(Integer id){
+        productosRepository.deleteById(id);
+    }
+
+    public Optional<Productos> BuscarById(Integer id) {
+        return productosRepository.findById(id);
+        
     }
 
 }

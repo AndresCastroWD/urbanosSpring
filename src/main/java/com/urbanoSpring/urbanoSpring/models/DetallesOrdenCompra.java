@@ -24,7 +24,6 @@ public class DetallesOrdenCompra implements Serializable {
     @Column(name = "ordenid")
     private Integer ordenid;
 
-    
     @Column(name = "productoid")
     private Integer productoid;
 

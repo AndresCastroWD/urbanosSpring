@@ -1,6 +1,8 @@
 package com.urbanoSpring.urbanoSpring.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +25,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
-@RequestMapping("/compra")
+@RequestMapping("/apiCompra")
 @CrossOrigin("*")
 public class CompraController {
     @Autowired
@@ -70,14 +72,22 @@ public class CompraController {
         return ordenCompra;
     }
 
-    // Eliminar Factura
+    // Eliminar orden
     @DeleteMapping("/eliminar/{id}")
-    public void eliminarOrden(@PathVariable("id") Integer id) {
+    public ResponseEntity<?> eliminarOrden(@PathVariable("id") Integer id) {
+        Map<String, Object> respuesta = new HashMap<>();
         Optional<OrdenCompra> orden = ordenservice.BuscarOrden(id);
         if (orden.isPresent()) {
             detallesService.EliminarDetalles(orden.get().getDetallesOrdenCompra());
             ordenservice.EliminarOrden(orden.get());
+            respuesta.put("Mensaje", "Se Elimino Correctamente la Orde ".concat(id.toString()));
+
+        }else{
+            respuesta.put("Mensaje", "No se encontro la Oorden con id: ".concat(id.toString()));
+            return new ResponseEntity<Map<String, Object>>(respuesta, HttpStatus.NOT_FOUND);
         }
+
+        return new ResponseEntity<Map<String, Object>>(respuesta, HttpStatus.OK);
     }
 
 }

@@ -21,13 +21,9 @@ public class Productos {
     private Double precio;
     private String imagen;
 
-    
-
-
     public Productos() {
 
     }
-
 
     public Integer getId() {
         return id;

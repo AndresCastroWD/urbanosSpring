@@ -1,6 +1,7 @@
 package com.urbanoSpring.urbanoSpring.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,8 +22,8 @@ public Usuarios GuardarUsuario(Usuarios usuarios) {
     return usuariosRepository.save(usuarios);
 }
 
-public Usuarios BuscarById(Integer id) {
-    return usuariosRepository.findById(id).get();
+public Optional<Usuarios> BuscarById(Integer id) {
+    return usuariosRepository.findById(id);
     
 }
 
